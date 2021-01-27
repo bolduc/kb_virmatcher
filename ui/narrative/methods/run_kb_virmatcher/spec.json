@@ -4,21 +4,38 @@
         "bbolduc"
     ],
     "contact": "",
-    "categories": ["active"],
+    "categories": ["active", "virus"],
     "widgets": {
         "input": null,
         "output": null
     },
     "parameters": [ 
         {
-            "id": "parameter_1",
-            "optional": true,
+            "id": "viral_genomes",
+            "optional": false,
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "text",
             "text_options": {
-                "valid_ws_types": [ ]
+                "valid_ws_types": [ "KBaseGenomeAnnotations.Assembly" ]
+            }
+        },
+        {
+            "id": "host_genomes",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [
+                    "KBaseGenomeAnnotations.Assembly",
+                    "KBaseMetagenomes.Genomes",
+                    "KBaseSets.AssemblySet",
+                    "KBaseMetagenomes.BinnedContigs"
+
+                ]
             }
         }
     ],
@@ -35,8 +52,14 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "parameter_1",
-                    "target_property": "parameter_1"
+                    "input_parameter": "viral_genomes",
+                    "target_property": "viral_genomes",
+                    "target_type_transform": "resolved-ref"
+                },
+                {
+                    "input_parameter": "host_genomes",
+                    "target_property": "host_genomes",
+                    "target_type_transform": "resolved-ref"
                 }
             ],
             "output_mapping": [

@@ -6,8 +6,28 @@ MAINTAINER KBase Developer
 # install line here, a git checkout to download code, or run any other
 # installation scripts.
 
-# RUN apt-get update
+# Prepare ENV variables
+ENV GTDBTK_DATA_PATH=/data PATH=/miniconda/bin:${PATH}
 
+# Install dependencies
+RUN apt-get update && apt-get install -y build-essential cmake wget
+
+RUN pip uninstall -y numpy
+
+# VirMatcher specifically
+RUN conda install -y -c conda-forge -c bioconda -c r python=3.6 prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython pyparsing psutil
+RUN conda install -y -c bioconda gtdbtk
+#RUN python3 -m pip install dendropy
+RUN pip install dendropy
+
+RUN git clone https://github.com/soedinglab/WIsH.git && cd WIsH && cmake . && make && chmod +x WIsH && cp WIsH /miniconda/bin/
+
+# Finally, "install"
+RUN git clone https://bitbucket.org/MAVERICLab/virmatcher.git && cd virmatcher && pip install . --no-deps
+
+# Clean up
+RUN apt-get clean && conda clean -y --all
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # -----------------------------------------
 

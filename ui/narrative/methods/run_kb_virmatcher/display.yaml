@@ -1,10 +1,10 @@
 #
 # define display information
 #
-name: Method Name Here
+name: VirMatcher
 
 tooltip: |
-    Perform some kind of method
+    Identifies host-virus pairings
 
 screenshots: []
 
@@ -24,12 +24,20 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    parameter_1 :
+    viral_genomes :
         ui-name : |
             First parameter
         short-hint : |
             The first parameter
         long-hint  : |
+            The first parameter that needs to be entered to drive the method. This might be the first of many.
+
+    host_genomes:
+        ui-name: |
+            First parameter
+        short-hint: |
+            The first parameter
+        long-hint: |
             The first parameter that needs to be entered to drive the method. This might be the first of many.
 
 description : |

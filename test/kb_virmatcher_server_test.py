@@ -63,5 +63,13 @@ class kb_virmatcherTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        ret = self.serviceImpl.run_kb_virmatcher(self.ctx, {'workspace_name': self.wsName,
-                                                             'parameter_1': 'Hello World!'})
+        virus_ref = "52125/60/1"  # Assembly
+        # host_ref = "52125/4/1"  # Assembly
+        # host_ref = "52125/7/1"  # BinnedContigs, actually virus
+        # host_ref = "52125/58/1"  # AssemblySet
+        host_ref = "52125/62/1"  # AssemblySet, Arc and Bac
+        ret = self.serviceImpl.run_kb_virmatcher(self.ctx,
+                                                 {'workspace_name': self.wsName,
+                                                  'viral_genomes': virus_ref,
+                                                  'host_genomes': host_ref,
+                                                  })
