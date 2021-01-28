@@ -25,7 +25,7 @@ def run_gtdbtk(input_dir: Path, output_dir: Path, cpu_count):
         '--extension', 'fasta',
         '--genome_dir', str(input_dir),
         '--out_dir', str(output_dir),
-        '--pplacer_cpus', '1',
+        '--pplacer_cpus', '1' if cpu_count <= 4 else str(cpu_count),
         '--cpus', str(cpu_count)]
 
     logging.info('Starting Command:\n' + ' '.join(gtdbtk_cmd))
