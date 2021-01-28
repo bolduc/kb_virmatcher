@@ -113,7 +113,7 @@ def process_kbase_objects(host_ref, virus_ref, shared_folder, callback, workspac
         virus_fps = au.get_assembly_as_fasta({'ref': virus_ref})['path']
 
         records = SeqIO.parse(virus_fps, 'fasta')
-        virus_count = len(records)
+        virus_count = len(list(records))
 
         # for record in records:
         #     virus_count += 1
@@ -188,12 +188,14 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
 
     # Write Archaea and Bacteria taxonomies out
     arc_taxonomy_fp = Path(shared_folder) / 'archaea_taxonomy.tsv'
-    arc_df = pd.DataFrame().from_dict(arc_data, orient='index')
-    arc_df.to_csv(arc_taxonomy_fp, sep='\t', index=False, columns=False)
+    if arc_data:
+        arc_df = pd.DataFrame().from_dict(arc_data, orient='index')
+        arc_df.to_csv(arc_taxonomy_fp, sep='\t', index=False, columns=False)
 
     bac_taxonomy_fp = Path(shared_folder) / 'bacteria_taxonomy.tsv'
-    bac_df = pd.DataFrame().from_dict(bac_data, orient='index')
-    bac_df.to_csv(bac_taxonomy_fp, sep='\t', index=False, columns=False)
+    if bac_data:
+        bac_df = pd.DataFrame().from_dict(bac_data, orient='index')
+        bac_df.to_csv(bac_taxonomy_fp, sep='\t', index=False, columns=False)
 
     print(f'Removing previous host file(s) to limit disk space usage.')
     shutil.rmtree(host_dir)

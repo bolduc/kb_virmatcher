@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-import os
 from pathlib import Path
 import subprocess
 import logging
-import pandas as pd
 
 
 def run_virmatcher(archaea_dir: Path, archaea_tax: Path, bacteria_dir: Path, bacteria_tax: Path,
@@ -26,9 +24,8 @@ def run_virmatcher(archaea_dir: Path, archaea_tax: Path, bacteria_dir: Path, bac
                       '--bacteria-host-dir', bacteria_dir, '--bacteria-taxonomy', bacteria_tax,
                       '--cpu-count', host_cpu_count, '-o', output_dir]
 
-    # VirMatcher -v /fs/project/PAS1117/ben/test_VirMatcher/selected_isog_contigs.VS_1245.min5k_95-80.fna
-    # --archaea-host-dir /fs/project/PAS1117/ben/test_VirMatcher/ArchaeaLite/
-    # --archaea-taxonomy /fs/project/PAS1117/ben/test_VirMatcher/GTDB_arc.tsv
-    # --bacteria-taxonomy /fs/project/PAS1117/ben/test_VirMatcher/GTDB_bac.tsv
-    #  /fs/project/PAS1117/ben/test_VirMatcher/BacteriaLite/
-    # -o VirMatcher_Final_Installed
+    ret = subprocess.run(virmatcher_cmd, check=True)
+
+    if ret.returncode != 0:
+        logging.error(f'There was an issue during VirMatcher execution: {ret.stderr}')
+        exit(1)
