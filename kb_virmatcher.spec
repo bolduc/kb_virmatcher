@@ -4,7 +4,7 @@ A KBase module: kb_virmatcher
 
 module kb_virmatcher {
 
-    typedef string obj_ref
+    typedef string obj_ref;
 
     typedef structure {
 
