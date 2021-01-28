@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y build-essential cmake wget
 RUN pip uninstall -y numpy
 
 # VirMatcher specifically
-RUN conda install -y -c conda-forge -c bioconda -c r python=3.6 prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython pyparsing psutil
+RUN conda install -y -c conda-forge -c bioconda -c r python=3.6 prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil
+RUN conda install -y pyparsing
 RUN conda install -y -c bioconda gtdbtk
 #RUN python3 -m pip install dendropy
 RUN pip install dendropy
