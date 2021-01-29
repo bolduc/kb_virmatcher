@@ -60,7 +60,7 @@ def process_gtdbtk_outputs(output_dir: Path):
             logging.info(f'GTDB-Tk {domain} not found. This may be fine.')
         else:
             # Just need the taxonomy
-            gtdbtk_df = pd.read_csv(gtdbtk_fp, header=0, index_col=False)
+            gtdbtk_df = pd.read_csv(gtdbtk_fp, header=0, index_col=False, sep='\s+')
             gtdbtk_df['genus'] = gtdbtk_df['classification'].apply(lambda x: x.split(';')[5])
             gtdbtk_df['domain'] = domain
 
