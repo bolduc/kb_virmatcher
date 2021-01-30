@@ -173,7 +173,8 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
                                 'genus': genus
                                 }
             genome_fp = host_dir / f'{genome}.fasta'
-            shutil.move(genome_fp, arc_dir)
+            # shutil.move(genome_fp, arc_dir) 3.9+
+            shutil.move(str(genome_fp), arc_dir)
 
         elif domain == 'bac120':
 
@@ -181,7 +182,7 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
                                 'genus': genus
                                 }
             genome_fp = host_dir / f'{genome}.fasta'
-            shutil.move(genome_fp, bac_dir)
+            shutil.move(str(genome_fp), bac_dir)
 
         else:
             raise ValueError(f'Parsing error of GTDB-Tk aggregated taxonomy. Domain {domain} does not exist.')
