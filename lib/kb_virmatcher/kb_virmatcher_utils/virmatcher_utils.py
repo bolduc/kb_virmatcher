@@ -191,12 +191,12 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
     arc_taxonomy_fp = Path(shared_folder) / 'archaea_taxonomy.tsv'
     if arc_data:
         arc_df = pd.DataFrame().from_dict(arc_data, orient='index')
-        arc_df.to_csv(arc_taxonomy_fp, sep='\t', index=False, columns=False)
+        arc_df.to_csv(arc_taxonomy_fp, sep='\t', index=False, header=False)
 
     bac_taxonomy_fp = Path(shared_folder) / 'bacteria_taxonomy.tsv'
     if bac_data:
         bac_df = pd.DataFrame().from_dict(bac_data, orient='index')
-        bac_df.to_csv(bac_taxonomy_fp, sep='\t', index=False, columns=False)
+        bac_df.to_csv(bac_taxonomy_fp, sep='\t', index=False, header=False)
 
     print(f'Removing previous host file(s) to limit disk space usage.')
     shutil.rmtree(host_dir)
