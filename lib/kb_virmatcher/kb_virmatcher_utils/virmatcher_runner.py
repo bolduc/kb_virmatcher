@@ -22,7 +22,7 @@ def run_virmatcher(archaea_dir: Path, archaea_tax: Path, bacteria_dir: Path, bac
     virmatcher_cmd = ['VirMatcher', '-v', virus_fp,
                       '--archaea-host-dir', archaea_dir, '--archaea-taxonomy', archaea_tax,
                       '--bacteria-host-dir', bacteria_dir, '--bacteria-taxonomy', bacteria_tax,
-                      '--threads', str(host_cpu_count), '-o', output_dir]
+                      '--threads', str(host_cpu_count), '-o', output_dir, '--python-aggregator']
 
     ret = subprocess.run(virmatcher_cmd, check=True)
 
