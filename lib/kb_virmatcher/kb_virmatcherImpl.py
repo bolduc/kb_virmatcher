@@ -86,7 +86,8 @@ class kb_virmatcher:
         run_virmatcher(archaea_dir, archaea_fp, bacteria_dir, bacteria_fp, virus_fp, self.cpus, virmatcher_dir)
 
         logging.info('VirMatcher complete, sending results to KBase workspace')
-        report_info = generate_report(self.callback_url, ctx['token'], self.ws_url, self.shared_folder, virmatcher_dir)
+        report_info = generate_report(self.callback_url, ctx['token'], params.get('workspace_name'),
+                                      self.shared_folder, virmatcher_dir)
 
         report_output = {
             'report_name': report_info['name'],

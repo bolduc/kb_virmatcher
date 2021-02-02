@@ -204,7 +204,7 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
     return arc_dir, arc_taxonomy_fp, bac_dir, bac_taxonomy_fp
 
 
-def generate_report(callback_url, token, workspace, shared_folder: Path, virmatcher_output: Path):
+def generate_report(callback_url, token, workspace_name, shared_folder: Path, virmatcher_output: Path):
     html_template = Template("""<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -332,7 +332,7 @@ def generate_report(callback_url, token, workspace, shared_folder: Path, virmatc
     }]
 
     report_params = {'message': 'Basic message to show in the report',
-                     'workspace_name': workspace,
+                     'workspace_name': workspace_name,
                      'html_links': html_report,
                      'direct_html_link_index': 0,
                      'report_object_name': f'VirMatcher_report_{str(uuid.uuid4())}',
