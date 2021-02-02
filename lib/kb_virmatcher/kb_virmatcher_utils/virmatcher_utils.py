@@ -320,14 +320,14 @@ def generate_report(callback_url, token, workspace, shared_folder: Path, virmatc
         html_fh.write(final_html)
 
     report_shock_id = dfu.file_to_shock({
-        'file_path': output_dir,
+        'file_path': str(output_dir),
         'pack': 'zip'
     })['shock_id']
 
     html_report = [{
         'shock_id': report_shock_id,
-        'name': os.path.basename(html_fp),
-        'label': os.path.basename(html_fp),
+        'name': 'index.html',
+        'label': 'index.html',
         'description': 'Summary report for VirMatcher'
     }]
 
