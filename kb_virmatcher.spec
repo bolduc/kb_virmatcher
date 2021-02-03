@@ -22,7 +22,7 @@ module kb_virmatcher {
 
     typedef structure{
         string report_name;
-        string report ref;
+        string report_ref;
     } ReportResults;
 
     funcdef run_kb_virmatcher(InParams params)
