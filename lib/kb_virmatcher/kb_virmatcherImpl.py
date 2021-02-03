@@ -89,10 +89,13 @@ class kb_virmatcher:
         report_info = generate_report(self.callback_url, ctx['token'], params.get('workspace_name'),
                                       self.shared_folder, virmatcher_dir)
 
+        print(report_info)
+
         report_output = {
             'report_name': report_info['name'],
             'report_ref': report_info['ref'],
         }
+        print(report_output)
         #END run_kb_virmatcher
 
         # At some point might do deeper type checking...
