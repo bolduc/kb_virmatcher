@@ -258,7 +258,7 @@ def generate_report(callback_url, token, workspace_name, shared_folder: Path, vi
               buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'],
               scrollX: true,
-              dom: 'lPfrtip'  //Necessary for buttons to work
+              dom: 'lBfrtip'  //P to B disables panes
             });
 
             table.columns().every( function () {
@@ -284,6 +284,29 @@ def generate_report(callback_url, token, workspace_name, shared_folder: Path, vi
     virmatcher_fp = virmatcher_output / 'VirMatcher_Summary_Predictions.tsv'
 
     virmatcher_df = pd.read_csv(virmatcher_fp, header=0, index_col=None, delimiter='\t')
+
+    # Set column ordering
+    order = [
+        'Original Viral population',
+        'Original Host',
+        'Final_score',
+        'Prophage blast score',
+        'Prophage blast percent identity',
+        'Prophage blast viral contig coverage',
+        'tRNA match',
+        'Max number of end mismatches detected in host tRNA',
+        'Non-promiscuous tRNA match score',
+        'CRISPR score',
+        'Number of CRISPR matches',
+        'Max number of end mismatches detected in any CRISPR spacer',
+        'WIsH score',
+        'WIsH p-value',
+        'LogLikelihood',
+        'Viral population',
+        'Predicted host',
+    ]
+    virmatcher_df = virmatcher_df[order]
+
     html = virmatcher_df.to_html(index=False, classes='my_class table-striped" id = "my_id')
 
     # Need to file write below
