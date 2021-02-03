@@ -19,7 +19,13 @@ module kb_virmatcher {
     /*
         This example function accepts any number of parameters and returns results in a KBaseReport
     */
+
+    typedef structure{
+        string report_name;
+        string report ref;
+    } ReportResults;
+
     funcdef run_kb_virmatcher(InParams params)
-        returns () authentication required;
+        returns (ReportResults report_output) authentication required;
 
 };
