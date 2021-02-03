@@ -49,15 +49,15 @@ description : |
     including; host CRISPR-spacers, integrated prophage, host tRNA genes, and k-mer signatures calculated by WIsH.
 
     A more thorough description of this tool (and the code it runs) is available at
-    [py-VirMatcher](https://bitbucket.org/MAVERICLab/virmatcher/).
+    <a href="https://bitbucket.org/MAVERICLab/virmatcher/">py-VirMatcher</a>.
 
     Briefly, this App will consume viral genomes (in KBase.Asssembly object format) and suspected/putative/potential
     microbial genomes (in KBase.Assembly/Genomes/AssemblySet/BinnedContigs object formats), converts them into
-    suitable inputs for [GTDB-Tk](https://ecogenomics.github.io/GTDBTk/index.html), runs GTDB-Tk to taxonomically
-    classify the microbial genomes, and then passes that information to VirMatcher. VirMatcher uses a
+    suitable inputs for <a href="https://ecogenomics.github.io/GTDBTk/index.html">GTDB-Tk</a>, runs GTDB-Tk to
+    taxonomically classify the microbial genomes, and then passes that information to VirMatcher. VirMatcher uses a
     taxonomically-aware methodology and combines this with CRISPR spacer matches, BLAST search, tRNA matches, and
-    (WIsH)[https://github.com/soedinglab/WIsH] predictions. The final result is an aggregated, scored table of all
-    potential virus-host pairings.</p>
+    <a href="https://github.com/soedinglab/WIsH">WIsH</a> predictions. The final result is an aggregated, scored table
+    of all potential virus-host pairings.</p>
 
 publications :
     -
