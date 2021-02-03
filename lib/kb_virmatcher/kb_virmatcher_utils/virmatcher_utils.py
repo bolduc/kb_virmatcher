@@ -22,15 +22,14 @@ from pyparsing import Literal, SkipTo
 def process_kbase_objects(host_ref, virus_ref, shared_folder, callback, workspace, token):
     """
     Convert KBase object(s) into usable files for VirMatcher
-    :param host_ref:
-    :param virus_ref:
-    :param shared_folder:
+    :param host_ref: Putative host / microbial genomes with KBase '#/#/#' used to describe each object
+    :param virus_ref: Viral genomes with KBase '#/#/#' used to describe each object
+    :param shared_folder: KBase job node's "working" directory, where actual files exist
     :param callback:
-    :param workspace:
-    :param token:
+    :param workspace: Workspace name
+    :param token: Job token
     :return:
     """
-    # host_ref, self.shared_folder, self.callback_url, self.ws_url, ctx['token']
 
     dfu = DataFileUtil(callback, token=token)
 
@@ -86,7 +85,6 @@ def process_kbase_objects(host_ref, virus_ref, shared_folder, callback, workspac
             else:
                 target_fn = os.path.basename(host_fp).strip('_')
 
-
             shutil.copyfile(host_fp, host_dir / target_fn)
             host_count += 1
 
@@ -130,9 +128,6 @@ def process_kbase_objects(host_ref, virus_ref, shared_folder, callback, workspac
     # host_data = dfu.get_objects({'object_refs': [host_ref]})['data'][0]
     # virus_data = dfu.get_objects({'object_refs': [virus_ref]})['data'][0]
 
-    # pprint(host_data)
-    # pprint(virus_data)
-
     return host_dir, virus_fps
 
 
@@ -141,12 +136,11 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
     Convert the GTDB-Tk pd.DataFrame() and host files into the appropriate archaea/bacteria folder with taxonomy
     suitably formatted for VirMatcher
 
-    :param host_dir:
-    :param shared_folder:
+    :param host_dir: Directory path to host file(s)
+    :param shared_folder: KBase node "working" directory
     :param taxonomy_df: pd.DataFrame() with genus and domain columns
     :return:
     """
-    #
 
     # Work through each GTDB-Tk result and build VirMatcher taxonomy files
     bac_data = {}
@@ -205,6 +199,14 @@ def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
 
 
 def generate_report(callback_url, token, workspace_name, shared_folder: Path, virmatcher_output: Path):
+    """
+    :param callback_url:
+    :param token: Job token
+    :param workspace_name: Workspace name
+    :param shared_folder: KBase working directory on the node, used to save the HTML file
+    :param virmatcher_output: VirMatcher proper final results directory, should have the summary file
+    :return:
+    """
     html_template = Template("""<!DOCTYPE html>
     <html lang="en">
       <head>
