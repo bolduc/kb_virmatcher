@@ -8,7 +8,7 @@ service-language:
     python
 
 module-version:
-    0.0.31
+    0.0.32
 
 owners:
     [bbolduc]
