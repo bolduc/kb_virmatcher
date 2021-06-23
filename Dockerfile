@@ -18,13 +18,12 @@ RUN pip uninstall -y numpy
 RUN conda install -y -c conda-forge -c bioconda -c r python=3.6 prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil
 RUN conda install -y pyparsing
 RUN conda install -y -c bioconda gtdbtk
-#RUN python3 -m pip install dendropy
 RUN pip install dendropy
 
 RUN git clone https://github.com/soedinglab/WIsH.git && cd WIsH && cmake . && make && chmod +x WIsH && cp WIsH /miniconda/bin/
 
 # Finally, "install"
-RUN echo "VirMatcher updates"
+RUN echo "Update VirMatcher"
 RUN git clone https://bitbucket.org/MAVERICLab/virmatcher.git && cd virmatcher && pip install . --no-deps
 
 # Clean up
