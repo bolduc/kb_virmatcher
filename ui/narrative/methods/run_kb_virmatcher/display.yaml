@@ -4,11 +4,11 @@
 name: VirMatcher 0.2.4
 
 tooltip: |
-    Identifies host-virus pairings
+    Predicts host-virus matches
 
 screenshots: []
 
-icon: icon.png
+icon: kb_virmatcher.png
 
 #
 # define a set of similar apps that might be useful to the user

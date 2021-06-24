@@ -1,6 +1,10 @@
 # kb_virmatcher release notes
 =========================================
 
+0.0.33 (2021-06-24)
+--------------------
+* Add icon
+
 0.0.32 (2021-06-23)
 --------------------
 * Update kb_VirMatcher to reflect output changes in py-VirMatcher
