@@ -65,7 +65,7 @@ def process_kbase_objects(host_ref, virus_ref, shared_folder, callback, workspac
             tmp_fp = host_dir / f'{record.id}.fasta'  # TODO Illegal filenames?
             SeqIO.write([record], tmp_fp, 'fasta')
 
-    elif host_type == 'KBaseMetagenomes.Genomes':  # TODO Genomes?!
+    elif host_type == 'KBaseGenomes.Genomes':  # TODO Genomes?!
         print('host_fp')
         genome_data = ws.get_objects2({'objects': [
             {'ref': host_ref}]})['data'][0]['data']
