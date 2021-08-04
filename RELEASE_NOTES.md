@@ -1,6 +1,10 @@
 # kb_virmatcher release notes
 =========================================
 
+0.0.35 (2021-08-04)
+--------------------
+* Integrate new PR, updating KBase object import
+
 0.0.33 (2021-06-24)
 --------------------
 * Add icon
