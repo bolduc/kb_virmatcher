@@ -16,7 +16,7 @@ def run_virmatcher(gtdbtk_indir: Path, gtdbtk_outdir: Path, virus_fp: Path, host
     :param output_dir:
     :return:
     """
-    virmatcher_cmd = ['VirMatcher', '--preparer' '-v', virus_fp,
+    virmatcher_cmd = ['VirMatcher', '--preparer', '-v', virus_fp,
                       '--gtdbtk-in-dir', gtdbtk_indir, '--gtdbtk-out-dir', gtdbtk_outdir,
                       '--threads', str(host_cpu_count), '-o', output_dir, '--python-aggregator']
 
