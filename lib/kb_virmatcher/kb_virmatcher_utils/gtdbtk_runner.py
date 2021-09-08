@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 import subprocess
 import logging
-import pandas as pd
 
 
 def run_gtdbtk(input_dir: Path, output_dir: Path, cpu_count):

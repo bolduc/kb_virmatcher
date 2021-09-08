@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import psutil
 
-from kb_virmatcher.kb_virmatcher_utils.virmatcher_utils import process_kbase_objects, process_gtdbtk, generate_report
+from kb_virmatcher.kb_virmatcher_utils.virmatcher_utils import process_kbase_objects, generate_report
 from kb_virmatcher.kb_virmatcher_utils.gtdbtk_runner import run_gtdbtk
 from kb_virmatcher.kb_virmatcher_utils.virmatcher_runner import run_virmatcher
 #END_HEADER
