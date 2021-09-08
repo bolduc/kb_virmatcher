@@ -23,6 +23,7 @@ RUN pip install dendropy
 RUN git clone https://github.com/soedinglab/WIsH.git && cd WIsH && cmake . && make && chmod +x WIsH && cp WIsH /miniconda/bin/
 
 # Finally, "install"
+RUN echo "Force pull"
 RUN git clone https://bitbucket.org/MAVERICLab/virmatcher.git && cd virmatcher && pip install . --no-deps
 
 # Clean up
