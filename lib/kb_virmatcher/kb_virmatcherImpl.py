@@ -75,15 +75,11 @@ class kb_virmatcher:
 
         logging.info('Running GTDB-Tk classify...')
         gtdbtk_outdir = self.shared_folder / 'gtdbtk_output'
-        gtdbtk_df = run_gtdbtk(host_dir, gtdbtk_outdir, self.cpus)
+        run_gtdbtk(host_dir, gtdbtk_outdir, self.cpus)
 
-        logging.info('Parsing GTDB-Tk results and passing to VirMatcher')
-        # Convert the dataframe and host files into the appropriate archaea/bacteria folder with taxonomy-formatted
-        archaea_dir, archaea_fp, bacteria_dir, bacteria_fp = process_gtdbtk(host_dir, self.shared_folder, gtdbtk_df)
-
-        logging.info('Running VirMatcher')
+        logging.info('Passing GTDB-Tk results to VirMatcher and running VirMatcher')
         virmatcher_dir = self.shared_folder / 'virmatcher_output'
-        run_virmatcher(archaea_dir, archaea_fp, bacteria_dir, bacteria_fp, virus_fp, self.cpus, virmatcher_dir)
+        run_virmatcher(host_dir, gtdbtk_outdir, virus_fp, self.cpus, virmatcher_dir)
 
         logging.info('VirMatcher complete, sending results to KBase workspace')
         report_info = generate_report(self.callback_url, ctx['token'], params.get('workspace_name'),

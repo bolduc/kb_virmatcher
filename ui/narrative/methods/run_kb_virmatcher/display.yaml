@@ -1,7 +1,7 @@
 #
 # define display information
 #
-name: VirMatcher 0.2.4
+name: VirMatcher 0.3.1
 
 tooltip: |
     Predicts host-virus matches

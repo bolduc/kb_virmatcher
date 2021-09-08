@@ -1,6 +1,10 @@
 # kb_virmatcher release notes
 =========================================
 
+0.0.36 (2021-09-08)
+--------------------
+* Update kb_VirMatcher to reflect input and output changes in py-VirMatcher
+
 0.0.35 (2021-08-04)
 --------------------
 * Integrate new PR, updating KBase object import

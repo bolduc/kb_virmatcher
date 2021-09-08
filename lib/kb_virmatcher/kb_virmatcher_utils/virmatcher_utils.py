@@ -131,73 +131,6 @@ def process_kbase_objects(host_ref, virus_ref, shared_folder, callback, workspac
     return host_dir, virus_fps
 
 
-def process_gtdbtk(host_dir: Path, shared_folder, taxonomy_df: pd.DataFrame()):
-    """
-    Convert the GTDB-Tk pd.DataFrame() and host files into the appropriate archaea/bacteria folder with taxonomy
-    suitably formatted for VirMatcher
-
-    :param host_dir: Directory path to host file(s)
-    :param shared_folder: KBase node "working" directory
-    :param taxonomy_df: pd.DataFrame() with genus and domain columns
-    :return:
-    """
-
-    # Work through each GTDB-Tk result and build VirMatcher taxonomy files
-    bac_data = {}
-    arc_data = {}
-
-    # TODO Handling instances where there are no archaeal or bacterial genomes identified
-
-    bac_dir = Path(shared_folder) / 'bacterial_hosts'
-    if not bac_dir.is_dir():
-        os.mkdir(bac_dir)
-    arc_dir = Path(shared_folder) / 'archaeal_hosts'
-    if not arc_dir.is_dir():
-        os.mkdir(arc_dir)
-
-    for i, taxonomy_s in taxonomy_df.iterrows():
-
-        domain = taxonomy_s['domain']
-        genome = taxonomy_s['user_genome']
-        genus = taxonomy_s['genus']
-
-        if domain == 'ar122':
-
-            arc_data[genome] = {'genome': genome,
-                                'genus': genus
-                                }
-            genome_fp = host_dir / f'{genome}.fasta'
-            # shutil.move(genome_fp, arc_dir) 3.9+
-            shutil.move(str(genome_fp), arc_dir)
-
-        elif domain == 'bac120':
-
-            bac_data[genome] = {'genome': genome,
-                                'genus': genus
-                                }
-            genome_fp = host_dir / f'{genome}.fasta'
-            shutil.move(str(genome_fp), bac_dir)
-
-        else:
-            raise ValueError(f'Parsing error of GTDB-Tk aggregated taxonomy. Domain {domain} does not exist.')
-
-    # Write Archaea and Bacteria taxonomies out
-    arc_taxonomy_fp = Path(shared_folder) / 'archaea_taxonomy.tsv'
-    if arc_data:
-        arc_df = pd.DataFrame().from_dict(arc_data, orient='index')
-        arc_df.to_csv(arc_taxonomy_fp, sep='\t', index=False, header=False)
-
-    bac_taxonomy_fp = Path(shared_folder) / 'bacteria_taxonomy.tsv'
-    if bac_data:
-        bac_df = pd.DataFrame().from_dict(bac_data, orient='index')
-        bac_df.to_csv(bac_taxonomy_fp, sep='\t', index=False, header=False)
-
-    print(f'Removing previous host file(s) to limit disk space usage.')
-    shutil.rmtree(host_dir)
-
-    return arc_dir, arc_taxonomy_fp, bac_dir, bac_taxonomy_fp
-
-
 def generate_report(callback_url, token, workspace_name, shared_folder: Path, virmatcher_output: Path):
     """
     :param callback_url:
@@ -307,6 +240,7 @@ def generate_report(callback_url, token, workspace_name, shared_folder: Path, vi
         'Viral population',
         'Predicted host',
     ]
+    order = [ele for ele in order if ele in virmatcher_df.columns.tolist()]  # Some may not exist!
     virmatcher_df = virmatcher_df[order]
 
     html = virmatcher_df.to_html(index=False, classes='my_class table-striped" id = "my_id')
