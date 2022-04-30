@@ -12,10 +12,10 @@ ENV GTDBTK_DATA_PATH=/data PATH=/miniconda/bin:${PATH}
 # Install dependencies
 RUN apt-get update && apt-get install -y build-essential cmake wget
 
-RUN pip uninstall -y numpy
+#RUN pip uninstall -y numpy
 
 # VirMatcher specifically
-RUN conda install mamba 'python=3.6' 'conda=4.5.11' -n base -c conda-forge
+RUN conda install mamba 'python=3.6' 'conda<4.8' -n base -c conda-forge
 RUN mamba install -y prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil -c conda-forge -c bioconda -c r
 RUN mamba install -y pyparsing
 RUN mamba install -y gtdbtk -c bioconda
