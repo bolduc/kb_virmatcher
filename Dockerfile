@@ -17,10 +17,10 @@ RUN apt-get update && apt-get install -y build-essential cmake wget
 # VirMatcher specifically
 RUN conda install -y 'python=3.6'
 RUN conda install -y charset-normalizer -c conda-forge
-RUN conda install mamba 'conda<4.8' -n base -c conda-forge
-RUN mamba install -y prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil -c conda-forge -c bioconda -c r
-RUN mamba install -y pyparsing
-RUN mamba install -y gtdbtk -c bioconda
+RUN conda install mamba -y -q 'conda<4.8' -n base -c conda-forge
+RUN mamba install -y -q prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil -c conda-forge -c bioconda -c r
+RUN mamba install -y -q pyparsing
+RUN mamba install -y -q gtdbtk -c bioconda
 RUN pip install dendropy
 
 RUN git clone https://github.com/soedinglab/WIsH.git && cd WIsH && cmake . && make && chmod +x WIsH && cp WIsH /miniconda/bin/
