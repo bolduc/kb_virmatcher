@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y build-essential cmake wget
 # VirMatcher specifically
 RUN conda install -y 'python=3.6'
 RUN conda install -y charset-normalizer -c conda-forge
-RUN conda install mamba -y -q 'conda<4.8' -n base -c conda-forge
+RUN conda install mamba -y -n base -c conda-forge  # 'conda<4.8'
 RUN mamba install -y -q prodigal hmmer pplacer fastani fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil -c conda-forge -c bioconda -c r
 RUN mamba install -y -q pyparsing
 RUN mamba install -y -q gtdbtk -c bioconda
