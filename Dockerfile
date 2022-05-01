@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y build-essential cmake wget
 RUN conda install -y 'python=3.6'
 RUN conda install -y charset-normalizer -c conda-forge
 RUN conda install -y mamba -n base -c conda-forge  # 'conda<4.8'
-RUN mamba install -y -q prodigal hmmer pplacer 'fastani=<1.32' fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil pyparsing -c conda-forge -c bioconda -c r
-RUN mamba install -y -q 'gtdbtk<1.4.2' -c bioconda
+RUN mamba install -y -q prodigal hmmer pplacer fasttree mash numpy tqdm minced blast trnascan-se r-here r-seqinr r-dplyr r-stringr r-data.table pandas biopython psutil pyparsing -c conda-forge -c bioconda -c r
+RUN mamba install -y -q 'gtdbtk<1.4.2' 'fastani=<1.32' -c bioconda
 RUN pip install dendropy
 
 RUN git clone https://github.com/soedinglab/WIsH.git && cd WIsH && cmake . && make && chmod +x WIsH && cp WIsH /miniconda/bin/
