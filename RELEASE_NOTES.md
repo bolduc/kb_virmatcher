@@ -1,11 +1,21 @@
 # kb_virmatcher release notes
 =========================================
 
-0.0.38 (2021-09-08)
+1.0.0 (2022-05-04)
+--------------------
+* Re-pull VirMatcher, incorporating fixes to handle situations where user sequences may not have hits to tRNAs and other methods.
+* Update "KBase" VirMatcher dependencies in Dockerfile
+* Update kb_VirMatcher to 1.0.0, as per KBase release policy
+
+0.0.39 (2021-09-08)
 --------------------
 * Re-pull VirMatcher
 
 0.0.38 (2021-09-08)
+--------------------
+* Re-pull VirMatcher
+
+0.0.37 (2021-09-08)
 --------------------
 * Fix absent comma
 
